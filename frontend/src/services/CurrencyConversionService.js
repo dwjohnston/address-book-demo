@@ -2,8 +2,6 @@ import axios from "axios";
 const BASE_URL = "https://api.exchangeratesapi.io/latest";
 
 export async function fetchLatestRate(from, to) {
-    //https://api.exchangeratesapi.io/latest?symbols=USD&base=AUD
-
     try {
         const response = await axios(({
             method: "GET",

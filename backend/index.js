@@ -16,14 +16,9 @@ const dynamodb = new AWS.DynamoDB(config.dynamoOptions);
 
 app.get('/products', async (req, res) => {
     try {
-        console.log("try");
         const result = await dbApi.getAllItems();
-
-        console.log(result);
         res.send(result);
     } catch (err) {
-        console.log(err);
-
         res.status(500).send(err);
     }
 });

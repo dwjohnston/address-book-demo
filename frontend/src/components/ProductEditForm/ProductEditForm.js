@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { selectProductByProductId, createEmptyProduct, isUpdateLoading } from '../../redux/selectors';
 import { requestUpdateProduct } from '../../redux/actions';
-import { Input, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 import Button from "../generic/Button";
 import { connect } from 'react-redux';
 import { Redirect } from "react-router-dom";
 import { PRODUCT_TABLE } from '../../routes/routes';
+import { isUpdateLoading } from '../../redux/selectors';
 const useStyles = makeStyles({
     root: {
         display: "flex",
@@ -17,13 +17,12 @@ const useStyles = makeStyles({
     },
 
     field: {
-        //display: "block",
         paddingBottom: "1em",
     }
 });
 
 /***
- * Not that happy with the way I've done this. 
+ * Not especially happy with the way I've done this. 
  * 
  * Possibly would have been better to use something like Formik. 
  */

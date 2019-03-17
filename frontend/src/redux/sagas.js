@@ -22,7 +22,6 @@ export function* fetchAllProductsSaga() {
     yield takeLeading(FETCH_ALL_PRODUCTS_REQUEST, function* () {
         try {
             const result = yield call(fetchAllProducts);
-            console.log(result);
             yield put({
                 type: FETCH_ALL_PRODUCTS_SUCCESS,
                 payload: result

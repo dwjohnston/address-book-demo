@@ -10,7 +10,6 @@ const initialData = [
 ];
 
 initialData.forEach(function (product) {
-    console.log(product)
     var params = {
         TableName: config.tableName,
         Item: {
