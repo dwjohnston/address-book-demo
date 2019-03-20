@@ -1,61 +1,48 @@
 const express = require('express');
-const AWS = require("aws-sdk");
-const uuid = require('uuid/v1');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.json());
 const port = 3001 || process.env.port;
 
-const config = require("./dynamodb/config");
-const dbApi = require("./dynamodb/interactWithTable");
-
-const dynamodb = new AWS.DynamoDB(config.dynamoOptions);
-
-
-
-app.get('/products', async (req, res) => {
+const dbApi = require("./db/db");
+const ADDRESSES_URI = "/addresses";
+app.get(ADDRESSES_URI, async (req, res) => {
     try {
-        const result = await dbApi.getAllItems();
+        const result = await dbApi.getAllAddresses();
         res.send(result);
     } catch (err) {
         res.status(500).send(err);
     }
 });
 
-app.post('/products', async (req, res) => {
+app.post(ADDRESSES_URI, async (req, res) => {
     try {
-        const result = await dbApi.updateItem({
-            ...req.body,
-            id: uuid()
-        });
+        console.log(req, req.body);
+        const result = await dbApi.addAddress(req.body);
         res.send(result);
     } catch (err) {
         res.status(500).send(err);
     }
 });
 
-app.patch('/products/:id', async (req, res) => {
+app.patch(`${ADDRESSES_URI}:id`, async (req, res) => {
     try {
-        const id = req.params.id;
-        const result = await dbApi.updateItem({
-            ...req.body,
-            id: uuid()
-        });
+        const result = await dbApi.updateAddress(req.body);
         res.send(result);
     } catch (err) {
         res.status(500).send(err);
     }
 });
 
-app.delete('/products/:id', async (req, res) => {
+app.delete(`${ADDRESSES_URI}/:id`, async (req, res) => {
     try {
         const id = req.params.id;
-        const result = await dbApi.deleteItem(id);
+        const result = await dbApi.deleteAddress(id);
         res.send(result);
     } catch (err) {
         res.status(500).send(err);
     }
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Address book API  listening on port ${port}!`))
