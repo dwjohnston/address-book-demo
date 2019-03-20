@@ -23,7 +23,7 @@ function FilterPanel({ updateFilter }) {
 
     useEffect(() => {
         const items = Object.values(filterItems).filter(v => v.length > 0);
-        updateFilter(filterEnabled && items.length > 0, items);
+        updateFilter(filterEnabled, items);
     });
 
     return <div className={classes.root}>

@@ -23,23 +23,24 @@ import {
 } from "../services/AddressService";
 
 export function* fetchAllAddressesSaga() {
-    yield takeLeading(FETCH_ALL_ADDRESSES_REQUEST, function* () {
-        try {
-            const result = yield call(fetchAllAddressses);
-            yield put({
-                type: FETCH_ALL_ADDRESSES_SUCCESS,
-                payload: result
-            })
-        }
-        catch (err) {
 
-            console.error(err);
-            yield put({
-                type: FETCH_ALL_ADDRESSES_FAILURE,
-                payload: err
-            });
-        }
-    });
+
+    try {
+        const result = yield call(fetchAllAddressses);
+        yield put({
+            type: FETCH_ALL_ADDRESSES_SUCCESS,
+            payload: result
+        })
+    }
+    catch (err) {
+
+        console.error(err);
+        yield put({
+            type: FETCH_ALL_ADDRESSES_FAILURE,
+            payload: err
+        });
+    }
+
 }
 
 export function* updateAddressSaga() {
@@ -124,7 +125,7 @@ export function* updateFilterSaga() {
 
 export default function* rootSaga() {
     yield all([
-        fetchAllAddressesSaga(),
+        takeLeading(FETCH_ALL_ADDRESSES_REQUEST, fetchAllAddressesSaga), //It is better to not watch and execute in the same generator, easier to test. 
         updateAddressSaga(),
         deleteAddressSaga(),
         clearErrorsSaga(),

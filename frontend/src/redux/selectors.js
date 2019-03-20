@@ -13,7 +13,7 @@ export function selectAllAddresses(state) {
 
     const addresses = Object.values(state.addresses);
 
-    if (state.filter.enabled) {
+    if (state.filter.enabled && state.filter.items.length > 0) {
         return addresses.filter(v => state.filter.items.includes(v.name));
     }
 
