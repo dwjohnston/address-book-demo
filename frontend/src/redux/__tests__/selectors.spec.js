@@ -1,4 +1,5 @@
 import { selectAllAddresses } from "../selectors";
+import { select } from "redux-saga/effects";
 
 describe("selectAllAddresses", () => {
     describe("filter is not enabled", () => {
@@ -22,6 +23,46 @@ describe("selectAllAddresses", () => {
                     name: "foo",
                     phone: 123,
                 }
+            ]);
+        });
+
+        it("returns the address in alphabetical order", () => {
+            const initState = {
+                addresses: {
+
+                    CHARLIE: {
+                        name: "charlie",
+                        phone: 123,
+                    },
+                    BETA: {
+                        name: "beta",
+                        phone: 123,
+                    },
+                    ALPHA: {
+                        name: "alpha",
+                        phone: 123,
+                    },
+
+                },
+                filter: {
+                    enabled: false,
+                    items: []
+                }
+            };
+
+            expect(selectAllAddresses(initState)).toEqual([
+                {
+                    name: "alpha",
+                    phone: 123,
+                },
+                {
+                    name: "beta",
+                    phone: 123,
+                },
+                {
+                    name: "charlie",
+                    phone: 123,
+                },
             ]);
         });
     })
