@@ -7,6 +7,10 @@
     "AAAAA_AAAA": {
       "name": "AAAAA AAAA",
       "phone": "123123"
+    },
+    "Foo": {
+      "name": "Foo",
+      "phone": "123123"
     }
   }
 }

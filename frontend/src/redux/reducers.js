@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { FETCH_ALL_ADDRESSES_SUCCESS, UPDATE_ADDRESS_REQUEST, UPDATE_ADDRESS_FAILURE, UPDATE_ADDRESS_SUCCESS, DELETE_ADDRESS_SUCCESS, CLEAR_ERRORS_REQUEST, CLEAR_ERRORS_SUCCESS, FETCH_CURRENCY_RATE_SUCCESS } from "./actions";
+import { FETCH_ALL_ADDRESSES_SUCCESS, UPDATE_ADDRESS_REQUEST, UPDATE_ADDRESS_FAILURE, UPDATE_ADDRESS_SUCCESS, DELETE_ADDRESS_SUCCESS, CLEAR_ERRORS_REQUEST, CLEAR_ERRORS_SUCCESS, FETCH_CURRENCY_RATE_SUCCESS, UPDATE_FILTER_SUCCESS } from "./actions";
 
 
 const initialState = {};
@@ -66,10 +66,27 @@ export function errorsReducer(state = initialErrorState, action) {
 
     return state;
 }
+
+
+const initialFilterState = {
+    enabled: false,
+    items: [],
+}
+
+export function filterReducer(state = initialFilterState, action) {
+    const { type, payload } = action;
+    if (type === UPDATE_FILTER_SUCCESS) {
+        return payload;
+    }
+
+    return state;
+}
+
 const rootReducer = combineReducers({
     addresses: addressesReducer,
     loadingFlags: loadingFlagsReducer,
     errors: errorsReducer,
+    filter: filterReducer,
 });
 
 

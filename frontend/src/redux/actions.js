@@ -42,6 +42,22 @@ export function requestDeleteAddress(address) {
     }
 }
 
+export const UPDATE_FILTER_REQUEST =
+    'UPDATE_FILTER_REQUEST';
+export const UPDATE_FILTER_SUCCESS =
+    'UPDATE_FILTER_SUCCESS';
+export const UPDATE_FILTER_FAILURE =
+    'UPDATE_FILTER_FAILURE';
+
+export function requestUpdateFilter(enabled, items) {
+    return {
+        type: UPDATE_FILTER_REQUEST,
+        payload: {
+            enabled,
+            items,
+        }
+    }
+}
 
 export const CLEAR_ERRORS_REQUEST =
     'CLEAR_ERRORS_REQUEST';

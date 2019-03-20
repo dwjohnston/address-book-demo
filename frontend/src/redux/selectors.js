@@ -10,7 +10,15 @@ export function isUpdateLoading(state) {
 }
 
 export function selectAllAddresses(state) {
-    return Object.values(state.addresses)
+
+    const addresses = Object.values(state.addresses);
+
+    if (state.filter.enabled) {
+        return addresses.filter(v => state.filter.items.includes(v.name));
+    }
+
+    return addresses;
+
 }
 
 export function selectAddressByAddressId(state, id) {

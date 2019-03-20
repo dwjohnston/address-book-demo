@@ -12,6 +12,9 @@ import {
     CLEAR_ERRORS_REQUEST,
     CLEAR_ERRORS_FAILURE,
     CLEAR_ERRORS_SUCCESS,
+    UPDATE_FILTER_REQUEST,
+    UPDATE_FILTER_SUCCESS,
+    UPDATE_FILTER_FAILURE,
 } from "./actions";
 import {
     fetchAllAddressses,
@@ -101,11 +104,30 @@ export function* clearErrorsSaga() {
     });
 }
 
+export function* updateFilterSaga() {
+    yield takeLeading(UPDATE_FILTER_REQUEST, function* (action) {
+        try {
+            yield put({
+                type: UPDATE_FILTER_SUCCESS,
+                payload: action.payload,
+            })
+        }
+        catch (err) {
+            console.error(err);
+            yield put({
+                type: UPDATE_FILTER_FAILURE,
+                payload: err
+            });
+        }
+    });
+}
+
 export default function* rootSaga() {
     yield all([
         fetchAllAddressesSaga(),
         updateAddressSaga(),
         deleteAddressSaga(),
         clearErrorsSaga(),
+        updateFilterSaga(),
     ])
 }

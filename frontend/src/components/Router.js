@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter as ReactRouter, Route, Switch, Link } from "react-router-dom";
-import AddressTable from "./AddressTable/AddressTable";
+import { BrowserRouter as ReactRouter, Route, Switch } from "react-router-dom";
+import AddressTable from "./AddressBook/AddressTable";
 
 import * as Routes from "../routes/routes";
 import CreateAddress from "./AddressEditForm/CreateAddress";
