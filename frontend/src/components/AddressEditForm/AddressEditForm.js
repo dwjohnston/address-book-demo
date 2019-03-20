@@ -29,7 +29,7 @@ const useStyles = makeStyles({
 function AddressEditForm({ addressData, submitForm, updateLoading }) {
     const classes = useStyles();
     const [name, updateName] = useState(addressData.name);
-    const [phone, updatePhone] = useState(addressData.priceUsd);
+    const [phone, updatePhone] = useState(addressData.phone);
 
     const [formSubmitted, updateFormSubmitted] = useState(false);
 
@@ -39,7 +39,6 @@ function AddressEditForm({ addressData, submitForm, updateLoading }) {
             onSubmit={(event) => {
                 event.preventDefault();
                 submitForm({
-                    id: addressData.id,
                     name,
                     phone,
                 });
