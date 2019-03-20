@@ -1,44 +1,44 @@
 
-export const FETCH_ALL_PRODUCTS_REQUEST =
-    'FETCH_ALL_PRODUCTS_REQUEST';
-export const FETCH_ALL_PRODUCTS_SUCCESS =
-    'FETCH_ALL_PRODUCTS_SUCCESS';
-export const FETCH_ALL_PRODUCTS_FAILURE =
-    'FETCH_ALL_PRODUCTS_FAILURE';
+export const FETCH_ALL_ADDRESSES_REQUEST =
+    'FETCH_ALL_ADDRESSES_REQUEST';
+export const FETCH_ALL_ADDRESSES_SUCCESS =
+    'FETCH_ALL_ADDRESSES_SUCCESS';
+export const FETCH_ALL_ADDRESSES_FAILURE =
+    'FETCH_ALL_ADDRESSES_FAILURE';
 
-export function requestFetchAllProducts() {
+export function requestFetchAllAddresses() {
     return {
-        type: FETCH_ALL_PRODUCTS_REQUEST,
+        type: FETCH_ALL_ADDRESSES_REQUEST,
         payload: null
     }
 }
 
-export const UPDATE_PRODUCT_REQUEST =
-    'UPDATE_PRODUCT_REQUEST';
-export const UPDATE_PRODUCT_SUCCESS =
-    'UPDATE_PRODUCT_SUCCESS';
-export const UPDATE_PRODUCT_FAILURE =
-    'UPDATE_PRODUCT_FAILURE';
+export const UPDATE_ADDRESS_REQUEST =
+    'UPDATE_ADDRESS_REQUEST';
+export const UPDATE_ADDRESS_SUCCESS =
+    'UPDATE_ADDRESS_SUCCESS';
+export const UPDATE_ADDRESS_FAILURE =
+    'UPDATE_ADDRESS_FAILURE';
 
-export function requestUpdateProduct(productData) {
+export function requestUpdateAddress(addressData) {
     return {
-        type: UPDATE_PRODUCT_REQUEST,
-        payload: productData,
+        type: UPDATE_ADDRESS_REQUEST,
+        payload: addressData,
     }
 }
 
 
-export const DELETE_PRODUCT_REQUEST =
-    'DELETE_PRODUCT_REQUEST';
-export const DELETE_PRODUCT_SUCCESS =
-    'DELETE_PRODUCT_SUCCESS';
-export const DELETE_PRODUCT_FAILURE =
-    'QUIZE_FETCH_FAILURE';
+export const DELETE_ADDRESS_REQUEST =
+    'DELETE_ADDRESS_REQUEST';
+export const DELETE_ADDRESS_SUCCESS =
+    'DELETE_ADDRESS_SUCCESS';
+export const DELETE_ADDRESS_FAILURE =
+    'DELETE_ADDRESS_FAILURE';
 
-export function requestDeleteProduct(product) {
+export function requestDeleteAdddress(address) {
     return {
-        type: DELETE_PRODUCT_REQUEST,
-        payload: product,
+        type: DELETE_ADDRESS_REQUEST,
+        payload: address,
     }
 }
 
@@ -58,17 +58,3 @@ export function requestClearErrors() {
 }
 
 
-
-export const FETCH_CURRENCY_RATE_REQUEST =
-    'FETCH_CURRENCY_RATE_REQUEST';
-export const FETCH_CURRENCY_RATE_SUCCESS =
-    'FETCH_CURRENCY_RATE_SUCCESS';
-export const FETCH_CURRENCY_RATE_FAILURE =
-    'FETCH_CURRENCY_RATE_FAILURE';
-
-
-export function requestFetchCurrencyRate() {
-    return {
-        type: FETCH_CURRENCY_RATE_REQUEST
-    }
-}

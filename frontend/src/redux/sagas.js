@@ -1,29 +1,26 @@
 import { all, takeLeading, put, call } from "redux-saga/effects";
 import {
-    FETCH_ALL_PRODUCTS_REQUEST,
-    FETCH_ALL_PRODUCTS_SUCCESS,
-    FETCH_ALL_PRODUCTS_FAILURE,
-    UPDATE_PRODUCT_REQUEST,
-    UPDATE_PRODUCT_SUCCESS,
-    UPDATE_PRODUCT_FAILURE,
-    DELETE_PRODUCT_REQUEST,
-    DELETE_PRODUCT_FAILURE,
-    DELETE_PRODUCT_SUCCESS,
+    FETCH_ALL_ADDRESSES_REQUEST,
+    FETCH_ALL_ADDRESSES_SUCCESS,
+    FETCH_ALL_ADDRESSES_FAILURE,
+    UPDATE_ADDRESS_REQUEST,
+    UPDATE_ADDRESS_SUCCESS,
+    UPDATE_ADDRESS_FAILURE,
+    DELETE_ADDRESS_REQUEST,
+    DELETE_ADDRESS_FAILURE,
+    DELETE_ADDRESS_SUCCESS,
     CLEAR_ERRORS_REQUEST,
     CLEAR_ERRORS_FAILURE,
     CLEAR_ERRORS_SUCCESS,
-    FETCH_CURRENCY_RATE_REQUEST,
-    FETCH_CURRENCY_RATE_SUCCESS,
-    FETCH_CURRENCY_RATE_FAILURE
 } from "./actions";
-import { fetchAllProducts, patchProduct, postProduct, deleteProduct } from "../services/ProductService";
-import { fetchUsdToAudRate } from "../services/CurrencyConversionService";
-export function* fetchAllProductsSaga() {
-    yield takeLeading(FETCH_ALL_PRODUCTS_REQUEST, function* () {
+import { fetchAllAddressses, postAddress, deleteAddress } from "../services/ProductService";
+
+export function* fetchAllAddressesSaga() {
+    yield takeLeading(FETCH_ALL_ADDRESSES_REQUEST, function* () {
         try {
-            const result = yield call(fetchAllProducts);
+            const result = yield call(fetchAllAddressses);
             yield put({
-                type: FETCH_ALL_PRODUCTS_SUCCESS,
+                type: FETCH_ALL_ADDRESSES_SUCCESS,
                 payload: result
             })
         }
@@ -31,32 +28,23 @@ export function* fetchAllProductsSaga() {
 
             console.error(err);
             yield put({
-                type: FETCH_ALL_PRODUCTS_FAILURE,
+                type: FETCH_ALL_ADDRESSES_FAILURE,
                 payload: err
             });
         }
     });
 }
 
-export function isNewProduct(product) {
-    return product.id === undefined || product.id.length === 0
-}
-
-export function* updateProductSaga() {
-    yield takeLeading(UPDATE_PRODUCT_REQUEST, function* (action) {
+export function* updateAddressSaga() {
+    yield takeLeading(UPDATE_ADDRESS_REQUEST, function* (action) {
         try {
             const { payload } = action;
             let result;
 
-            if (isNewProduct(payload)) {
-                result = yield call(postProduct, payload);
-            }
-            else {
-                result = yield call(patchProduct, payload);
-            }
+            result = yield call(postAddress, payload);
 
             yield put({
-                type: UPDATE_PRODUCT_SUCCESS,
+                type: UPDATE_ADDRESS_SUCCESS,
                 payload: result
             })
         }
@@ -64,21 +52,21 @@ export function* updateProductSaga() {
 
             console.error(err);
             yield put({
-                type: UPDATE_PRODUCT_FAILURE,
+                type: UPDATE_ADDRESS_FAILURE,
                 payload: err
             });
         }
     });
 }
 
-export function* deleteProductSaga() {
-    yield takeLeading(DELETE_PRODUCT_REQUEST, function* (action) {
+export function* deleteAddressSaga() {
+    yield takeLeading(DELETE_ADDRESS_REQUEST, function* (action) {
         try {
             const { payload } = action;
-            const result = yield call(deleteProduct, payload);
+            const result = yield call(deleteAddress, payload);
 
             yield put({
-                type: DELETE_PRODUCT_SUCCESS,
+                type: DELETE_ADDRESS_SUCCESS,
                 payload: result
             })
         }
@@ -86,7 +74,7 @@ export function* deleteProductSaga() {
 
             console.error(err);
             yield put({
-                type: DELETE_PRODUCT_FAILURE,
+                type: DELETE_ADDRESS_FAILURE,
                 payload: err
             });
         }
@@ -109,34 +97,11 @@ export function* clearErrorsSaga() {
     });
 }
 
-export function* fetchCurrencyRateSaga() {
-    yield takeLeading(FETCH_CURRENCY_RATE_REQUEST, function* () {
-        try {
-
-            const rate = yield call(fetchUsdToAudRate);
-            yield put({
-                type: FETCH_CURRENCY_RATE_SUCCESS,
-                payload: rate,
-            })
-        }
-        catch (err) {
-            yield put({
-                type: FETCH_CURRENCY_RATE_FAILURE,
-                payload: err
-            });
-        }
-    });
-}
-
-
-
-
 export default function* rootSaga() {
     yield all([
-        fetchAllProductsSaga(),
-        updateProductSaga(),
-        deleteProductSaga(),
+        fetchAllAddressesSaga(),
+        updateAddressSaga(),
+        deleteAddressSaga(),
         clearErrorsSaga(),
-        fetchCurrencyRateSaga(),
     ])
 }

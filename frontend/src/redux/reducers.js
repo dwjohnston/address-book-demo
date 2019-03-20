@@ -1,25 +1,25 @@
 import { combineReducers } from "redux";
-import { FETCH_ALL_PRODUCTS_SUCCESS, UPDATE_PRODUCT_REQUEST, UPDATE_PRODUCT_FAILURE, UPDATE_PRODUCT_SUCCESS, DELETE_PRODUCT_SUCCESS, CLEAR_ERRORS_REQUEST, CLEAR_ERRORS_SUCCESS, FETCH_CURRENCY_RATE_SUCCESS } from "./actions";
+import { FETCH_ALL_ADDRESSES_SUCCESS, UPDATE_ADDRESS_REQUEST, UPDATE_ADDRESS_FAILURE, UPDATE_ADDRESS_SUCCESS, DELETE_ADDRESS_SUCCESS, CLEAR_ERRORS_REQUEST, CLEAR_ERRORS_SUCCESS, FETCH_CURRENCY_RATE_SUCCESS } from "./actions";
 
 
 const initialState = {};
-export function productsReducer(state = initialState, action) {
+export function addressesReducer(state = initialState, action) {
     const { type, payload } = action;
 
     switch (type) {
-        case FETCH_ALL_PRODUCTS_SUCCESS: {
+        case FETCH_ALL_ADDRESSES_SUCCESS: {
             //Index products by product id. 
             return payload.reduce((acc, cur) => {
                 return { ...acc, [cur.id]: cur };
             }, {});
         }
 
-        case UPDATE_PRODUCT_SUCCESS: {
+        case UPDATE_ADDRESS_SUCCESS: {
             //Add/replace product to existing product index
             return { ...state, [payload.id]: payload }
         }
 
-        case DELETE_PRODUCT_SUCCESS: {
+        case DELETE_ADDRESS_SUCCESS: {
             const newState = { ...state };
             delete newState[payload.id];
             return newState;
@@ -42,9 +42,9 @@ const initialLoadingState = {
 export function loadingFlagsReducer(state = initialLoadingState, action) {
     const { type, payload } = action;
     switch (type) {
-        case UPDATE_PRODUCT_REQUEST: return { ...state, updateProduct: true }
-        case UPDATE_PRODUCT_SUCCESS: return { ...state, updateProduct: false }
-        case UPDATE_PRODUCT_FAILURE: return { ...state, updateProduct: false }
+        case UPDATE_ADDRESS_REQUEST: return { ...state, updateProduct: true }
+        case UPDATE_ADDRESS_SUCCESS: return { ...state, updateProduct: false }
+        case UPDATE_ADDRESS_FAILURE: return { ...state, updateProduct: false }
         default: return state;
 
     }
@@ -69,27 +69,10 @@ export function errorsReducer(state = initialErrorState, action) {
 
     return state;
 }
-
-const initialCurrencyRateState = {
-    rate: null,
-}
-
-export function currencyRateReducer(state = initialCurrencyRateState, action) {
-    const { type, payload } = action;
-    switch (type) {
-        case FETCH_CURRENCY_RATE_SUCCESS: return {
-            rate: payload
-        }
-
-        default: return state;
-    }
-}
-
 const rootReducer = combineReducers({
-    products: productsReducer,
+    products: addressesReducer,
     loadingFlags: loadingFlagsReducer,
     errors: errorsReducer,
-    currencyRate: currencyRateReducer,
 });
 
 

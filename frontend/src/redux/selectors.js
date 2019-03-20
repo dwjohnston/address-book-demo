@@ -1,8 +1,7 @@
-export function createEmptyProduct() {
+export function createEmptyAddress() {
     return {
-        id: "",
         name: "",
-        priceUsd: "",
+        phone: "",
     }
 }
 
@@ -10,18 +9,15 @@ export function isUpdateLoading(state) {
     return state.loadingFlags.productUpdate;
 }
 
-export function selectAllProducts(state) {
-    return Object.values(state.products)
+export function selectAllAddreses(state) {
+    return Object.values(state.addresses)
 }
 
-export function selectProductByProductId(state, id) {
-    return state.products[id];
+export function selectAddressByAddressId(state, id) {
+    return state.addresses[id];
 }
 
 export function selectErrors(state) {
     return state.errors.errors;
 }
 
-export function selectCurrencyRate(state) {
-    return state.currencyRate.rate;
-}

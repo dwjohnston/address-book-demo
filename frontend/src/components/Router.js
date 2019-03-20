@@ -1,20 +1,20 @@
 import React from "react";
 import { BrowserRouter as ReactRouter, Route, Switch, Link } from "react-router-dom";
-import ProductTable from "./ProductTable/ProductTable";
+import AddressTable from "./AddressTable/AddressTable";
 
 import * as Routes from "../routes/routes";
-import UpdateProduct from "./ProductEditForm/UpdateProduct";
-import CreateProduct from "./ProductEditForm/CreateProduct";
+import UpdateAddress from "./AddressEditForm/UpdateAddress";
+import CreateAddress from "./AddressEditForm/CreateAddress";
 import { connect } from 'react-redux';
 
 function Router() {
     return (<ReactRouter>
         <Switch>
             {/* nb. Order is important because switch statement */}
-            <Route path={Routes.CREATE_PRODUCT} exact component={CreateProduct} />
-            <Route path={`${Routes.UPDATE_PRODUCT}/:id`} exact component={UpdateProduct} />
-            <Route path={Routes.PRODUCT_TABLE} exact component={ProductTable} />
-            <Route path={Routes.HOME} exact component={ProductTable} />
+            <Route path={Routes.CREATE_ADDRESS} exact component={CreateAddress} />
+            <Route path={`${Routes.UPDATE_ADDRESS}/:id`} exact component={UpdateAddress} />
+            <Route path={Routes.ADDRESS_TABLE} exact component={AddressTable} />
+            <Route path={Routes.HOME} exact component={AddressTable} />
         </Switch>
     </ReactRouter>)
 }

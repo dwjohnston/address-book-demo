@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { requestUpdateProduct } from '../../redux/actions';
+import { requestUpdateAddress } from '../../redux/actions';
 import { TextField } from '@material-ui/core';
 import Button from "../generic/Button";
 import { connect } from 'react-redux';
@@ -26,10 +26,10 @@ const useStyles = makeStyles({
  * 
  * Possibly would have been better to use something like Formik. 
  */
-function ProductEditForm({ productData, submitForm, updateLoading }) {
+function ProductEditForm({ adderessData, submitForm, updateLoading }) {
     const classes = useStyles();
-    const [name, updateName] = useState(productData.name);
-    const [priceUsd, updatePriceUsd] = useState(productData.priceUsd);
+    const [name, updateName] = useState(adderessData.name);
+    const [phone, updatePhone] = useState(adderessData.priceUsd);
 
     const [formSubmitted, updateFormSubmitted] = useState(false);
 
@@ -39,23 +39,17 @@ function ProductEditForm({ productData, submitForm, updateLoading }) {
             onSubmit={(event) => {
                 event.preventDefault();
                 submitForm({
-                    id: productData.id,
+                    id: adderessData.id,
                     name,
-                    priceUsd,
+                    phone,
                 });
 
                 updateFormSubmitted(true);
             }}
         >
             <TextField
-                disabled
-                label="Product ID"
-                value={productData.id || "n/a"}
-                className={classes.field}
-            />
-            <TextField
                 value={name}
-                label="Product Name"
+                label="Name"
                 onChange={(event) => updateName(event.target.value)}
                 disabled={updateLoading}
                 className={classes.field}
@@ -63,9 +57,9 @@ function ProductEditForm({ productData, submitForm, updateLoading }) {
             />
 
             <TextField
-                value={priceUsd}
-                label="Price (USD)"
-                onChange={(event) => updatePriceUsd(event.target.value)}
+                value={phone}
+                label="Phone"
+                onChange={(event) => updatePhone(event.target.value)}
                 disabled={updateLoading}
                 type="number"
                 className={classes.field}
@@ -97,7 +91,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = dispatch => {
     return {
-        submitForm: (productData) => dispatch(requestUpdateProduct(productData))
+        submitForm: (addressData) => dispatch(requestUpdateAddress(addressData))
     };
 };
 export default connect(

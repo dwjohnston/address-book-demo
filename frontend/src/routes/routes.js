@@ -1,4 +1,4 @@
-export const UPDATE_PRODUCT = "/products";
-export const CREATE_PRODUCT = "/products/new";
-export const PRODUCT_TABLE = "/products";
+export const UPDATE_ADDRESS = "/addresses";
+export const CREATE_ADDRESS = "/addresses/new";
+export const ADDRESS_TABLE = "/addresses";
 export const HOME = "/"; 

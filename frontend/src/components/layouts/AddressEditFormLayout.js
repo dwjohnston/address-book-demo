@@ -6,7 +6,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ProductEditFormLayout({ children }) {
+export default function AddressEditFormLayout({ children }) {
     const classes = useStyles();
     return <div className={classes.root}>
 
