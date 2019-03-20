@@ -5,7 +5,7 @@ import { TextField } from '@material-ui/core';
 import Button from "../generic/Button";
 import { connect } from 'react-redux';
 import { Redirect } from "react-router-dom";
-import { PRODUCT_TABLE } from '../../routes/routes';
+import { ADDRESS_TABLE } from '../../routes/routes';
 import { isUpdateLoading } from '../../redux/selectors';
 const useStyles = makeStyles({
     root: {
@@ -26,20 +26,20 @@ const useStyles = makeStyles({
  * 
  * Possibly would have been better to use something like Formik. 
  */
-function ProductEditForm({ adderessData, submitForm, updateLoading }) {
+function AddressEditForm({ addressData, submitForm, updateLoading }) {
     const classes = useStyles();
-    const [name, updateName] = useState(adderessData.name);
-    const [phone, updatePhone] = useState(adderessData.priceUsd);
+    const [name, updateName] = useState(addressData.name);
+    const [phone, updatePhone] = useState(addressData.priceUsd);
 
     const [formSubmitted, updateFormSubmitted] = useState(false);
 
     return (
-        (formSubmitted && !updateLoading) ? <Redirect to={PRODUCT_TABLE} /> : <form
+        (formSubmitted && !updateLoading) ? <Redirect to={ADDRESS_TABLE} /> : <form
             className={classes.root}
             onSubmit={(event) => {
                 event.preventDefault();
                 submitForm({
-                    id: adderessData.id,
+                    id: addressData.id,
                     name,
                     phone,
                 });
@@ -97,4 +97,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(ProductEditForm);
+)(AddressEditForm);

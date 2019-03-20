@@ -1,4 +1,5 @@
 import axios from "axios";
+import { globName } from "../util/globName";
 
 const BASE_URL = '/api';
 const URI_ADDRESSES = '/addresses';
@@ -30,12 +31,7 @@ export async function postAddress(address) {
     });
 }
 
-export async function patchAddress(address) {
-    return makeApiCall(`${URI_ADDRESSES}/${address.id}`, "PATCH", {
-        data: address
-    });
-}
 
 export async function deleteAddress(address) {
-    return makeApiCall(`${URI_ADDRESSES}/${address.id}`, "DELETE");
+    return makeApiCall(`${URI_ADDRESSES}/${globName(address.name)}`, "DELETE");
 }

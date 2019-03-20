@@ -35,7 +35,7 @@ export const DELETE_ADDRESS_SUCCESS =
 export const DELETE_ADDRESS_FAILURE =
     'DELETE_ADDRESS_FAILURE';
 
-export function requestDeleteAdddress(address) {
+export function requestDeleteAddress(address) {
     return {
         type: DELETE_ADDRESS_REQUEST,
         payload: address,

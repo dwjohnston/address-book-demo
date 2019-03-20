@@ -9,24 +9,27 @@ low(adapter).then((_db) => {
     db.defaults({ addresses: {} }).write();
 });
 
+function globName(name) {
+    return name.replace(" ", "_");
+}
+
 async function getAllAddresses() {
     const addresses = await db.get('addresses').value();
-    return Object.values(addresses);
+    return addresses;
 }
 
 async function addAddress(address) {
-    return updateAddress(address);
+    return updateAddress(globName(address.name), address);
 }
 
-async function updateAddress(address) {
-    console.log(address);
-    await db.set(`addresses.${address.name}`, address).write();
+async function updateAddress(id, address) {
+    await db.set(`addresses.${id}`, address).write();
     return address;
 }
 
-async function deleteAddress(addressId) {
-    await db.unset(`addresses.${addressId}`).write();
-    return addressId;
+async function deleteAddress(id) {
+    await db.unset(`addresses.${id}`).write();
+    return id;
 }
 
 module.exports = {

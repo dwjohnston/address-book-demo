@@ -26,9 +26,10 @@ app.post(ADDRESSES_URI, async (req, res) => {
     }
 });
 
-app.patch(`${ADDRESSES_URI}:id`, async (req, res) => {
+app.patch(`${ADDRESSES_URI}/:id`, async (req, res) => {
     try {
-        const result = await dbApi.updateAddress(req.body);
+        const id = req.params.id;
+        const result = await dbApi.updateAddress(id, req.body);
         res.send(result);
     } catch (err) {
         res.status(500).send(err);

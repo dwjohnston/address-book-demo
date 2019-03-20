@@ -8,10 +8,7 @@ export function addressesReducer(state = initialState, action) {
 
     switch (type) {
         case FETCH_ALL_ADDRESSES_SUCCESS: {
-            //Index products by product id. 
-            return payload.reduce((acc, cur) => {
-                return { ...acc, [cur.id]: cur };
-            }, {});
+            return payload;
         }
 
         case UPDATE_ADDRESS_SUCCESS: {
@@ -70,7 +67,7 @@ export function errorsReducer(state = initialErrorState, action) {
     return state;
 }
 const rootReducer = combineReducers({
-    products: addressesReducer,
+    addresses: addressesReducer,
     loadingFlags: loadingFlagsReducer,
     errors: errorsReducer,
 });

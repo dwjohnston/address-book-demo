@@ -13,7 +13,11 @@ import {
     CLEAR_ERRORS_FAILURE,
     CLEAR_ERRORS_SUCCESS,
 } from "./actions";
-import { fetchAllAddressses, postAddress, deleteAddress } from "../services/ProductService";
+import {
+    fetchAllAddressses,
+    postAddress,
+    deleteAddress
+} from "../services/AddressService";
 
 export function* fetchAllAddressesSaga() {
     yield takeLeading(FETCH_ALL_ADDRESSES_REQUEST, function* () {

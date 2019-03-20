@@ -1,9 +1,12 @@
 {
   "addresses": {
-    "undefined": {},
-    "David Johnston": {
-      "name": "David Johnston",
-      "phone": 1234
+    "12312312": {
+      "name": "12312312",
+      "phone": "1211"
+    },
+    "AAAAA_AAAA": {
+      "name": "AAAAA AAAA",
+      "phone": "123123"
     }
   }
 }

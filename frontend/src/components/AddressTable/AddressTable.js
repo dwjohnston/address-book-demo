@@ -9,6 +9,7 @@ import { selectAllAddresses } from '../../redux/selectors';
 import { requestDeleteAddress } from "../../redux/actions";
 import Button from "../generic/Button";
 import ControlPanel from './ControlPanel';
+import { globName } from '../../util/globName';
 const useStyles = makeStyles({
     root: {
 
@@ -41,11 +42,6 @@ function AddressTable({ addresses, deleteAddress }) {
                             <TableCell >{address.phone}</TableCell>
                             <TableCell>
                                 <ButtonGroup>
-                                    <Button
-                                        component={Link}
-                                        to={`${Routes.UPDATE_ADDRESS}/${address.id}`}
-                                        color="primary"
-                                    >Update</Button>
                                     <Button
                                         onClick={() => deleteAddress(address)}
                                         color="secondary"
